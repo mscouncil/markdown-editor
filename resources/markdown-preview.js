@@ -1,15 +1,15 @@
 module.exports = function(data){ 
   var mark = new Remarkable({ breaks: true, linkify: true })
     , md   = mark.render.bind(mark)
-    , host = this.host
+    , host = this.host || this
     , muto = this.muto || (this.muto = new MutationObserver(ripple))
     , conf = { characterData: true, subtree: true }
+    , text = host.innerHTML || data
 
-  this.host.setAttribute('css', 'markdown-preview.css')
-  if (!this.lastElementChild) return;
-  this.lastElementChild.tagName != 'DIV'
+  host.setAttribute('css', 'markdown-preview.css')
+  ;(!this.lastElementChild || this.lastElementChild.tagName != 'DIV')
     && this.appendChild(document.createElement('div'))
-  this.lastElementChild.innerHTML = md(decode(this.host.innerHTML))
+  this.lastElementChild.innerHTML = md(decode(text))
   muto.observe(host, conf)
 
   function decode(d) {
