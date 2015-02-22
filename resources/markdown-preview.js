@@ -7,6 +7,7 @@ module.exports = function(data){
     , text = host.innerHTML || data
 
   host.setAttribute('css', 'markdown-preview.css')
+  if (!text) return;
   ;(!this.lastElementChild || this.lastElementChild.tagName != 'DIV')
     && this.appendChild(document.createElement('div'))
   this.lastElementChild.innerHTML = md(decode(text))
