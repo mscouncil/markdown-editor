@@ -30,7 +30,7 @@
 :host(:hover)::after {
   opacity: 0.3 }
 
-text-area {
+textarea {
   overflow: auto;
   display: block;
   color: rgb(51, 51, 51);

@@ -1,5 +1,5 @@
 module.exports = function(data){ 
-  var mark = new Remarkable()
+  var mark = new Remarkable({ breaks: true, linkify: true })
     , md   = mark.render.bind(mark)
     , host = this.host
     , muto = this.muto || (this.muto = new MutationObserver(ripple))

@@ -3,14 +3,15 @@ module.exports = function(data){
     , host = d3.select(this.host).attr('css', 'markdown-editor.css')
     , html = (data && data.text) || decode(attr(this.host, 'value'))
   
-  var editor = once(self, 'text-area')
+  var editor = once(self, 'textarea')
         .attr('contenteditable', '')
         .on('input', input)
+        .on('paste', paste)
     , preview = once(self, 'markdown-preview')
         .each(ripple)
 
-  editor.in.html(br(html)).call(set)
-  preview.in.html(ubr(html))
+  editor.in.html(html).call(set)
+  preview.in.html(html)
 
   d3.select('body')
     .on('keyup.markdown', function(d) {
@@ -20,21 +21,15 @@ module.exports = function(data){
       ;(d3.event.which == 27)
           && host.classed('preview', false)
     })
- 
+
+  function paste(){
+    d3.event.preventDefault()
+    var text = d3.event.clipboardData.getData('text/plain')
+    document.execCommand("insertHTML", false, text)
+  }
+
   function set(d) {
     attr(host, 'value', encode(html))
-  }
-
-  function textarea() {
-    return document.createElement('textarea')
-  }    
-
-  function br(d) {
-    return d.replace(/\n/mg, '<br>')
-  }
-
-  function ubr(d) {
-    return d.replace(/<br>/mg, '\n')
   }
 
   function decode(d) {
@@ -47,9 +42,9 @@ module.exports = function(data){
 
   function input() {
     if (host.classed('preview')) return d3.event.preventDefault() 
-    var value = editor.html()
+    var value = editor.property('value')
     data && (data.text = value)
     attr(host, 'value', encode(value))
-    preview.html(ubr(value))
+    preview.html(value)
   }
 }
