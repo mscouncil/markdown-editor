@@ -1,8 +1,8 @@
 module.exports = function(data){
   var self = d3.select(this)
     , host = d3.select(this.host).attr('css', 'markdown-editor.css')
-    , html = (data && data.text) || decode(attr(this.host, 'value'))
-  
+    , text = (data && data.text) || decode(attr(this.host, 'value'))
+
   var editor = once(self, 'textarea')
         .attr('contenteditable', '')
         .on('input', input)
@@ -10,8 +10,12 @@ module.exports = function(data){
     , preview = once(self, 'markdown-preview')
         .each(ripple)
 
-  editor.in.html(html).call(set)
-  preview.in.html(html)
+  editor
+    .html(text)
+    .property('value', text)
+    .call(set)
+
+  preview.in.html(text)
 
   d3.select('body')
     .on('keyup.markdown', function(d) {
@@ -29,7 +33,7 @@ module.exports = function(data){
   }
 
   function set(d) {
-    attr(host, 'value', encode(html))
+    attr(host, 'value', encode(text))
   }
 
   function decode(d) {
