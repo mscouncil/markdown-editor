@@ -8,7 +8,7 @@ module.exports = function(data){
         .on('input', input)
         .on('paste', paste)
     , preview = once(self, 'markdown-preview')
-        .each(ripple)
+        .each(ripple.draw)
 
   editor
     .html(text)

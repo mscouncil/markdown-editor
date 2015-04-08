@@ -22,6 +22,7 @@
   border-radius: 3px;
   opacity: 0;
   border: 1px solid rgba(0,0,0,0.2);
+  pointer-events: none;
   transition: 200ms opacity; }
 
 :host(.preview)::after {
