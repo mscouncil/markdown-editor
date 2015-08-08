@@ -1,11 +1,11 @@
-var ripple = require('ripple')()
+var ripple = require('rijs')()  
+  , file   = require('utilise/file')
   , fs     = require('fs')
 
 ripple
   .resource(
       'markdown-editor'
     , require('./resources/markdown-editor')
-    , { extends: 'input' }
     )
   .resource(
       'markdown-preview'
@@ -13,15 +13,11 @@ ripple
     )
   .resource(
       'markdown-editor.css'
-    , file('./markdown-editor.css')
+    , file('./resources/markdown-editor.css')
     )
   .resource(
       'markdown-preview.css'
-    , file('./markdown-preview.css')
+    , file('./resources/markdown-preview.css')
     )
 
 module.exports = ripple
-
-function file(name){
-  return fs.readFileSync(__dirname + '/resources/'+name, {encoding:'utf8'})
-}

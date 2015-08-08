@@ -1,30 +1,34 @@
-module.exports = function(data){
-  var self = d3.select(this)
-    , host = d3.select(this.host).attr('css', 'markdown-editor.css')
+module.exports = function markdownEditor(data){
+  var self = sel(this).on('click', focus)
+    , host = sel(this.host).attr('css', 'markdown-editor.css')
     , text = (data && data.text) || decode(attr(this.host, 'value'))
+    , o = once(this)
 
-  var editor = once(self, 'textarea')
+  var editor = o('textarea', 1)
         .attr('contenteditable', '')
         .on('input', input)
         .on('paste', paste)
-    , preview = once(self, 'markdown-preview')
+        .on('keyup', keyup)
+    , preview = o('markdown-preview', 1)
+        .html(text)
         .each(ripple.draw)
 
-  editor
+  editor.sel
     .html(text)
     .property('value', text)
     .call(set)
 
-  preview.in.html(text)
+  function focus() {
+    editor.sel.node().focus()
+  }
+  
+  function keyup(d) {
+    ;(d3.event.which == 80 && d3.event.altKey)
+        && host.classed('preview', true)
 
-  d3.select('body')
-    .on('keyup.markdown', function(d) {
-      ;(d3.event.which == 80 && d3.event.altKey)
-          && host.classed('preview', true)
-
-      ;(d3.event.which == 27)
-          && host.classed('preview', false)
-    })
+    ;(d3.event.which == 27)
+        && host.classed('preview', false)
+  }
 
   function paste(){
     d3.event.preventDefault()
@@ -46,7 +50,7 @@ module.exports = function(data){
 
   function input() {
     if (host.classed('preview')) return d3.event.preventDefault() 
-    var value = editor.property('value')
+    var value = editor.sel.property('value')
     data && (data.text = value)
     attr(host, 'value', encode(value))
     preview.html(value)
