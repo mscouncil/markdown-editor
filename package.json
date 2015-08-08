@@ -16,6 +16,7 @@
     "brfs": "^1.4.0",
     "express": "^4.10.6",
     "jade": "^1.8.2",
+    "popper": "0.0.13",
     "serve-static": "^1.7.1",
     "through2": "^2.0.0",
     "utilise.filify": "0.0.5"
