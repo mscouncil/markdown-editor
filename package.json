@@ -12,14 +12,15 @@
     "utilise.file": "*"
   },
   "devDependencies": {
-    "d3": "^3.5.2",
-    "remarkable": "^1.6.0",
     "browserify": "^11.0.1",
+    "d3": "^3.5.2",
     "express": "^4.10.6",
     "jade": "^1.8.2",
     "popper": "*",
+    "remarkable": "^1.6.0",
     "serve-static": "^1.7.1",
     "through2": "^2.0.0",
+    "uglify-js": "^2.4.24",
     "utilise.filify": "*"
   }
 }
