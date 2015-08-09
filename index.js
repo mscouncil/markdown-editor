@@ -13,11 +13,11 @@ ripple
     )
   .resource(
       'markdown-editor.css'
-    , file('./resources/markdown-editor.css')
+    , file(__dirname + '/resources/markdown-editor.css')
     )
   .resource(
       'markdown-preview.css'
-    , file('./resources/markdown-preview.css')
+    , file(__dirname + '/resources/markdown-preview.css')
     )
 
 module.exports = ripple
