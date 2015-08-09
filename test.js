@@ -1,7 +1,7 @@
 delete localStorage.ripple
 var expect = window.chai.expect
   , container = document.createElement('div')
-  , ripple = require('rijs')()
+  , ripple = (require('rijs'), window.ripple)
   , markdown = require('./')
   , editor, preview
 
