@@ -1,5 +1,5 @@
 var ripple = require('rijs')()  
-  , file   = require('utilise/file')
+  , file   = require('utilise.file')
   , fs     = require('fs')
 
 ripple
