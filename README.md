@@ -2,7 +2,7 @@
 
 Realtime, Collaborative GitHub-esque Markdown Editor and Markdown Previewer using CommonMark ([Remarkable](https://github.com/jonschlinkert/remarkable)).
 
-![image](https://cloud.githubusercontent.com/assets/2184177/6320841/5ae40570-bae1-11e4-88ad-ffc6baa42b74.png)
+![image](https://cloud.githubusercontent.com/assets/2184177/9157699/5e864e0c-3eff-11e5-9b65-86ef3bcac02c.png)
 
 # Getting Started
 
@@ -12,13 +12,13 @@ You can simply mount the [index.js](https://github.com/pemrouz/markdown-editor/b
 var markdown = require('markdown-editor')
 
 ripple
-  .use(markdown)
+  .resource(markdown)
 ```
 
 Then use it in your app like any other Web Component:
 
 ```html
-<input is="markdown-editor" value="# Heh\r\nJigga what?">
+<markdown-editor value="# Heh\r\nSay what?">
 ```
 
 ```html

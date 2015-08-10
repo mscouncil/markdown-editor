@@ -57,7 +57,7 @@ describe('Markdown Editor', function(){
   describe('Markdown Editor', function(){
     
     beforeEach(function(done){
-      container.innerHTML = '<markdown-editor data="markdown-data" value="# Heh\r\nJigga what?"></markdown-editor>'
+      container.innerHTML = '<markdown-editor data="markdown-data" value="# Heh\r\nSay what?"></markdown-editor>'
       editor = container.firstElementChild
       ripple.draw(editor)
       setTimeout(done, 150)
@@ -68,14 +68,14 @@ describe('Markdown Editor', function(){
       expect(editor.shadowRoot.childNodes[0].nodeName).to.eql('STYLE')
       expect(editor.shadowRoot.childNodes[1].nodeName).to.eql('TEXTAREA')
       expect(editor.shadowRoot.childNodes[2].nodeName).to.eql('MARKDOWN-PREVIEW')
-      expect(editor.shadowRoot.childNodes[1].textContent).to.eql("# Heh\nJigga what?")
-      expect(editor.shadowRoot.childNodes[2].shadowRoot.lastElementChild.innerHTML).to.eql("<h1>Heh</h1>\n<p>Jigga what?</p>\n")
+      expect(editor.shadowRoot.childNodes[1].textContent).to.eql("# Heh\nSay what?")
+      expect(editor.shadowRoot.childNodes[2].shadowRoot.lastElementChild.innerHTML).to.eql("<h1>Heh</h1>\n<p>Say what?</p>\n")
       expect(getComputedStyle(editor.shadowRoot.childNodes[2]).display).to.eql('none')
     })
 
     it('should automatically reflect changes from editor html (via ripple)', function(done){  
-      expect(editor.shadowRoot.childNodes[1].textContent).to.eql("# Heh\nJigga what?")
-      expect(editor.shadowRoot.childNodes[2].shadowRoot.lastElementChild.innerHTML).to.eql("<h1>Heh</h1>\n<p>Jigga what?</p>\n")
+      expect(editor.shadowRoot.childNodes[1].textContent).to.eql("# Heh\nSay what?")
+      expect(editor.shadowRoot.childNodes[2].shadowRoot.lastElementChild.innerHTML).to.eql("<h1>Heh</h1>\n<p>Say what?</p>\n")
       ripple('markdown-data').text = '# wat'
       setTimeout(function(){
         expect(editor.shadowRoot.childNodes[1].textContent).to.eql("# wat")
