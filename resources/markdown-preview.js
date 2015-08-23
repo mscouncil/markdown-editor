@@ -9,7 +9,7 @@ module.exports = function markdownPreview(data){
 
   host.setAttribute('css', 'markdown-preview.css')
   
-  for (var i = kids.length-1; i >=0; i--)
+  for (var i = 0; i < kids.length; i++)
     if (kids[i].nodeName != 'STYLE' && kids[i].nodeName != 'DIV')
       (html += kids[i].textContent) 
 
