@@ -37,7 +37,9 @@ module.exports = function markdownEditor(data){
   }
 
   function set(d) {
-    attr(host, 'value', encode(text))
+    host
+      .property('value', encode(text))
+      .attr('value', encode(text))
   }
 
   function decode(d) {
@@ -52,7 +54,10 @@ module.exports = function markdownEditor(data){
     if (host.classed('preview')) return d3.event.preventDefault() 
     var value = editor.sel.property('value')
     data && (data.text = value)
-    attr(host, 'value', encode(value))
+    host
+      .attr('value', encode(value))
+      .attr('property', encode(value))
+      
     preview.html(value)
   }
 }

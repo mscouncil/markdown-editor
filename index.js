@@ -1,4 +1,4 @@
-var file   = require('utilise.file')
+var file = require('utilise.file')
 
 module.exports = [
   { 
