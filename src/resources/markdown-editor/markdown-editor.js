@@ -17,7 +17,7 @@ export default function markdownEditor(state){
 
   o('markdown-preview', { value })
 
-  function keyup(e) {
+  function keyup(d, i, el, e) {
     if (e.key == 'p' && e.altKey) 
       o.draw(state.preview = true)
 
@@ -25,12 +25,12 @@ export default function markdownEditor(state){
       o.draw(state.preview = false)
   }
 
-  function paste(e){
+  function paste(d, i, el, e){
     e.preventDefault()
     document.execCommand("insertHTML", false, e.clipboardData.getData('text/plain'))
   }
 
-  function input(e) {
+  function input(d, i, el, e) {
     if (state.preview) return e.preventDefault() 
     state.value = this.value
     o.draw()   
