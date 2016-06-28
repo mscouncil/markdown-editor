@@ -1,0 +1,55 @@
+*, *::before, *::after { 
+  box-sizing: border-box }
+
+:host {
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  position: relative;
+  display: inline-block; }
+
+:host::after {
+  content: 'Preview: Alt+P';
+  position: absolute;
+  right: 22px;
+  top: 8px;
+  font-size: 9px;
+  font-family: 'Helvetica Neue', Helvetica;
+  background: rgba(0,0,0,0.05);
+  color: black;
+  font-weight: bold;
+  padding: 4px;
+  border-radius: 3px;
+  opacity: 0;
+  border: 1px solid rgba(0,0,0,0.2);
+  pointer-events: none;
+  transition: 200ms opacity; }
+
+:host(.preview)::after {
+  content: 'Edit: Escape'; }
+
+:host(:hover)::after {
+  opacity: 0.3 }
+
+textarea {
+  overflow: auto;
+  display: block;
+  color: rgb(51, 51, 51);
+  text-align: left;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 10px;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 3px;
+  line-height: 22.4px;
+  background: rgb(250, 250, 250); }
+
+markdown-preview { 
+  display: none; } 
+
+:host(.preview) markdown-preview { 
+  display: block; } 
