@@ -1,23 +1,23 @@
 globals:
   - <script src="https://cdn.polyfill.io/v1/polyfill.min.js"></script>
-  - <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.0.0/chai.min.js"></script>
-  - <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
-  - <script src="https://rawgit.com/jonschlinkert/remarkable/dev/dist/remarkable.min.js"></script>
-  - <script src="https://rawgit.com/utilise/utilise/master/utilise.js"></script>
 
-tests: browserify ./test.js
+farm: saucelabs
+
+runner: tape
+
+tests: (npm run build > /dev/null) && browserify 
+  -i jsdom
   -t utilise.filify
-  -i colors
-  -i chai
-  | sed -E "s/require\('chai'\)/window.chai/"
-  | uglifyjs
+  -t tapify
+  dist/resources/markdown-editor/test.js 
+  dist/resources/markdown-preview/test.js
 
 watch: 
-  - resources
-  - index.js
-  - test.js
+  - src
 
 browsers:
   - chrome
   - firefox
+  - safari
   - ie11
+  - ie9
