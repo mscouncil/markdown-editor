@@ -12,17 +12,15 @@ once(document.head)
     .html(scope(file(__dirname + '/markdown-editor.css'), 'markdown-editor'))
 
 test('basic output', t => {
-  t.plan(1)
+  t.plan(4)
 
   const host = o('markdown-editor', 1).node()
   mde.call(host, { value: `# Some Heading` })
 
-  t.equal(stripws(host.outerHTML), stripws`
-    <markdown-editor>
-      <textarea></textarea>
-      <markdown-preview></markdown-preview>
-    </markdown-editor>
-  `, 'basic structure')
+  t.ok(host.children.length == 2)
+  t.ok(lo(host.children[0].nodeName) == 'textarea')
+  t.ok(lo(host.children[1].nodeName) == 'markdown-preview')
+  t.ok(host.children[0].value == '# Some Heading')
 
   o.html('')
   t.end()
