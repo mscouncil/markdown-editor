@@ -37,5 +37,8 @@
     "uglifyjs": "^2.4.10",
     "utilise": "*",
     "utilise.filify": "*"
+  },
+  "dependencies": {
+    "remarkable": "^1.6.2"
   }
 }
