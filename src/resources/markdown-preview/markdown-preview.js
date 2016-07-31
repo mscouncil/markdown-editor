@@ -1,5 +1,3 @@
-import Remarkable from 'remarkable'
-
 export default function markdownPreview({ value }){ 
   var mark = new Remarkable({ breaks: true, linkify: true })
     , md   = mark.render.bind(mark)
