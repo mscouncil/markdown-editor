@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = markdownEditor;
-function markdownEditor(state) {
+function markdownEditor(node, state) {
   var decode = function decode(d) {
     return d.replace(/\\r\\n/mg, '\n');
   },
@@ -16,7 +16,7 @@ function markdownEditor(state) {
   },
       value = decode(defaults(state, 'value', '')),
       preview = defaults(state, 'preview', false),
-      o = once(this);
+      o = once(node);
 
   o.on('click', focus).classed('preview', preview);
 
@@ -37,7 +37,7 @@ function markdownEditor(state) {
 
   function input(d, i, el, e) {
     if (state.preview) return e.preventDefault();
-    state.value = this.value;
+    state.value = el.value;
     o.draw();
   }
 }

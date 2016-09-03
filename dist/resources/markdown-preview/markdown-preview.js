@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = markdownPreview;
-function markdownPreview(_ref) {
+function markdownPreview(node, _ref) {
   var value = _ref.value;
 
   var mark = new Remarkable({ breaks: true, linkify: true }),
@@ -13,5 +13,5 @@ function markdownPreview(_ref) {
     return d.replace(/\\r\\n/mg, '\n');
   };
 
-  once(this)('.content', 1).html(md(decode(value)));
+  once(node)('.content', 1).html(md(decode(value)));
 }

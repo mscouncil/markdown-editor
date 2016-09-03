@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = markdownEditor;
-function markdownEditor(state) {
+function markdownEditor(node, state) {
   var decode = function decode(d) {
     return d.replace(/\\r\\n/mg, '\n');
   },
@@ -17,7 +17,7 @@ function markdownEditor(state) {
   },
       value = decode(defaults(state, 'value', '')),
       preview = defaults(state, 'preview', false),
-      o = once(this);
+      o = once(node);
 
   o.on('click', focus).classed('preview', preview);
 
@@ -38,7 +38,7 @@ function markdownEditor(state) {
 
   function input(d, i, el, e) {
     if (state.preview) return e.preventDefault();
-    state.value = this.value;
+    state.value = el.value;
     o.draw();
   }
 }
@@ -49,7 +49,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = markdownPreview;
-function markdownPreview(_ref) {
+function markdownPreview(node, _ref) {
   var value = _ref.value;
 
   var mark = new Remarkable({ breaks: true, linkify: true }),
@@ -58,7 +58,7 @@ function markdownPreview(_ref) {
     return d.replace(/\\r\\n/mg, '\n');
   };
 
-  once(this)('.content', 1).html(md(decode(value)));
+  once(node)('.content', 1).html(md(decode(value)));
 }
 },{}],3:[function(require,module,exports){
 module.exports = {
