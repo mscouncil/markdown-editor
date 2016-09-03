@@ -1,10 +1,10 @@
-export default function markdownEditor(state){
+export default function markdownEditor(node, state){
   const decode  = d => d.replace(/\\r\\n/mg, '\n')
       , encode  = d => d.replace(/(<br>|\n)/mg, '\\r\\n')
       , focus   = d => o('textarea').node().focus()
       , value   = decode(defaults(state, 'value', ''))
       , preview = defaults(state, 'preview', false)
-      , o = once(this)
+      , o = once(node)
   
   o.on('click', focus)
     .classed('preview', preview)
@@ -32,7 +32,7 @@ export default function markdownEditor(state){
 
   function input(d, i, el, e) {
     if (state.preview) return e.preventDefault() 
-    state.value = this.value
+    state.value = el.value
     o.draw()   
   }
 }
