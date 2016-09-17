@@ -15,7 +15,7 @@ test('basic output', t => {
   t.plan(1)
 
   const host = o('markdown-preview', 1).node()
-  mdp.call(host, { value: `
+  mdp(host, { value: `
 # Cheatsheet
 
 This is a markdown editor. Press Alt+P to see how this will render.

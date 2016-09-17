@@ -15,7 +15,7 @@ test('basic output', t => {
   t.plan(4)
 
   const host = o('markdown-editor', 1).node()
-  mde.call(host, { value: `# Some Heading` })
+  mde(host, { value: `# Some Heading` })
 
   t.ok(host.children.length == 2)
   t.ok(lo(host.children[0].nodeName) == 'textarea')
