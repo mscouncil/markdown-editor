@@ -28,7 +28,7 @@ test('basic output', function (t) {
   t.plan(1);
 
   var host = o('markdown-preview', 1).node();
-  _markdownPreview2.default.call(host, { value: '\n# Cheatsheet\n\nThis is a markdown editor. Press Alt+P to see how this will render.\n\n* Bullet points\n* _Italic_ *text*\n* __Bold__ **text**\n\n1. Ordered\n2. Lists\n\n## Heading 2\n\nA small place by the coast and [link example](https://www.google.com)\n' });
+  (0, _markdownPreview2.default)(host, { value: '\n# Cheatsheet\n\nThis is a markdown editor. Press Alt+P to see how this will render.\n\n* Bullet points\n* _Italic_ *text*\n* __Bold__ **text**\n\n1. Ordered\n2. Lists\n\n## Heading 2\n\nA small place by the coast and [link example](https://www.google.com)\n' });
 
   t.equal(stripws(host.outerHTML), stripws(_templateObject), 'basic structure');
 

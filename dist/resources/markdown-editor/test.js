@@ -24,7 +24,7 @@ test('basic output', function (t) {
   t.plan(4);
 
   var host = o('markdown-editor', 1).node();
-  _markdownEditor2.default.call(host, { value: '# Some Heading' });
+  (0, _markdownEditor2.default)(host, { value: '# Some Heading' });
 
   t.ok(host.children.length == 2);
   t.ok(lo(host.children[0].nodeName) == 'textarea');
