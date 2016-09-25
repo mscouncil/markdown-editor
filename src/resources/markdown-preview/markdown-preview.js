@@ -1,4 +1,4 @@
-import Remarkable from 'remarkable'
+// import Remarkable from 'remarkable'
 
 export default function markdownPreview(node, { value }){ 
   var mark = new Remarkable({ breaks: true, linkify: true })
