@@ -14,7 +14,7 @@ function markdownEditor(node, state) {
       focus = function focus(d) {
     return o('textarea').node().focus();
   },
-      value = decode(defaults(state, 'value', '')),
+      value = decode(defaults(state, 'value', state.default || '')),
       preview = defaults(state, 'preview', false),
       o = once(node);
 

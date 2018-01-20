@@ -2,7 +2,7 @@ export default function markdownEditor(node, state){
   const decode  = d => d.replace(/\\r\\n/mg, '\n')
       , encode  = d => d.replace(/(<br>|\n)/mg, '\\r\\n')
       , focus   = d => o('textarea').node().focus()
-      , value   = decode(defaults(state, 'value', ''))
+      , value   = decode(defaults(state, 'value', state.default || ''))
       , preview = defaults(state, 'preview', false)
       , o = once(node)
   
