@@ -12,15 +12,15 @@ function markdownEditor(node, state) {
     return d.replace(/(<br>|\n)/mg, '\\r\\n');
   },
       focus = function focus(d) {
-    return o('textarea').node().focus();
+    return o('.editor').node().focus();
   },
       value = decode(defaults(state, 'value', state.default || '')),
       preview = defaults(state, 'preview', false),
       o = once(node);
 
-  o.on('click', focus).classed('preview', preview);
+  o.on('click.focus', focus).classed('preview', preview);
 
-  o('textarea', 1).property('value', value).on('input.md', input).on('paste.md', paste).on('keyup.md', keyup);
+  o('.editor[contenteditable="true"]', 1).text(value).on('input.md', input).on('paste.md', paste).on('keyup.md', keyup);
 
   o('markdown-preview', { value: value });
 
@@ -37,7 +37,7 @@ function markdownEditor(node, state) {
 
   function input(d, i, el, e) {
     if (state.preview) return e.preventDefault();
-    state.value = el.value;
+    state.value = el.textContent;
     o.draw();
   }
 }

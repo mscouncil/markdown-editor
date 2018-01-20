@@ -31,7 +31,8 @@
 :host(:hover)::after {
   opacity: 0.3 }
 
-textarea {
+:host > .editor {
+  white-space: pre-line;
   overflow: auto;
   display: block;
   color: rgb(51, 51, 51);
