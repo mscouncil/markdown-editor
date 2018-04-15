@@ -1,3 +1,4 @@
+module.exports = `
 *, *::before, *::after { 
   box-sizing: border-box }
   
@@ -69,3 +70,4 @@
     color: rgb(51,51,51); 
     margin: 0;
     padding: 0; }
+`

@@ -1,4 +1,11 @@
-export default function markdownEditor(node, state){
+const styles   = require('./markdown-editor.css.js')
+    , defaults = require('utilise/defaults')
+    , define   = require('@compone/define')
+    , style    = require('@compone/style')
+    , once     = require('utilise/once')
+    
+module.exports = define('markdown-editor', function markdownEditor(node, state){ 
+  style(node, styles)
   const decode  = d => d.replace(/\\r\\n/mg, '\n')
       , encode  = d => d.replace(/(<br>|\n)/mg, '\\r\\n')
       , focus   = d => o('.editor').node().focus()
@@ -17,7 +24,7 @@ export default function markdownEditor(node, state){
 
   o('markdown-preview', { value })
 
-  function keyup(d, i, el, e) {
+  function keyup(e) {
     if (e.key == 'p' && e.altKey) 
       o.draw(state.preview = true)
 
@@ -25,14 +32,14 @@ export default function markdownEditor(node, state){
       o.draw(state.preview = false)
   }
 
-  function paste(d, i, el, e){
+  function paste(e){
     e.preventDefault()
     document.execCommand("insertHTML", false, e.clipboardData.getData('text/plain'))
   }
 
-  function input(d, i, el, e) {
+  function input(e) {
     if (state.preview) return e.preventDefault() 
-    state.value = el.textContent
+    state.value = this.textContent
     o.draw()   
   }
-}
+})

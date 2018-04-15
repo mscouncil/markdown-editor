@@ -1,3 +1,4 @@
+module.exports = `
 *, *::before, *::after { 
   box-sizing: border-box }
 
@@ -54,3 +55,4 @@ markdown-preview {
 
 :host(.preview) markdown-preview { 
   display: block; } 
+`

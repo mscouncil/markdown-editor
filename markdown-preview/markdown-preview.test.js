@@ -1,21 +1,8 @@
-import 'utilise'
-import 'browserenv'
-import scope from 'cssscope'
-import mdp from './markdown-preview'
+const { test } = require('tap')
+    , { spawn } = require('spawn-client')
 
-const style = window.getComputedStyle
-    , o = once(document.body)('.container', 1, null, ':first-child')
-    , test = require('tap').test
-
-once(document.head)
-  ('style', 1)
-    .html(scope(file(__dirname + '/markdown-preview.css'), 'markdown-preview'))
-
-test('basic output', t => {
-  t.plan(1)
-
-  const host = o('markdown-preview', 1).node()
-  mdp(host, { value: `
+test('basic test', spawn('<markdown-preview id="el">', async () => {
+  el.state = { value: `
 # Cheatsheet
 
 This is a markdown editor. Press Alt+P to see how this will render.
@@ -30,10 +17,12 @@ This is a markdown editor. Press Alt+P to see how this will render.
 ## Heading 2
 
 A small place by the coast and [link example](https://www.google.com)
-` })
+` }
 
-  t.equal(stripws(host.outerHTML), stripws`
-    <markdown-preview>
+  await el.render()
+
+  same(el, `
+    <markdown-preview id="el" stylesheet="2042137198">
       <div class="content">
         <h1>Cheatsheet</h1>
         <p>This is a markdown editor. Press Alt+P to see how this will render.</p>
@@ -50,8 +39,5 @@ A small place by the coast and [link example](https://www.google.com)
         <p>A small place by the coast and <a href="https://www.google.com">link example</a></p>
       </div>
     </markdown-preview>
-  `, 'basic structure')
-
-  o.html('')
-  t.end()
-})
+  `)
+}))
