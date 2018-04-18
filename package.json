@@ -1,6 +1,6 @@
 {
   "name": "@pemrouz/markdown-editor",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "markdown-editor/markdown-editor",
   "author": "Pedram Emrouznejad (https://github.com/pemrouz)",
   "license": "pemrouz.mit-license.org",
