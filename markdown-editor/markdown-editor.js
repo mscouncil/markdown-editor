@@ -39,7 +39,7 @@ module.exports = define('markdown-editor', function markdownEditor(node, state){
 
   function input(e) {
     if (state.preview) return e.preventDefault() 
-    state.value = this.textContent
+    state.value = this.innerText
     o.draw()   
   }
 })
