@@ -6,8 +6,7 @@ const styles   = require('./markdown-editor.css.js')
     
 module.exports = define('markdown-editor', function markdownEditor(node, state){ 
   style(node, styles)
-  const decode  = d => d.replace(/\\r\\n/mg, '\n')
-      , encode  = d => d.replace(/(<br>|\n)/mg, '\\r\\n')
+  const decode  = d => d.replace(/(<br>|\\r\\n)/mg, '\n')
       , focus   = d => o('.editor').node().focus()
       , value   = decode(defaults(state, 'value', state.default || ''))
       , preview = defaults(state, 'preview', false)
@@ -17,7 +16,9 @@ module.exports = define('markdown-editor', function markdownEditor(node, state){
     .classed('preview', preview)
 
   o('.editor[contenteditable="true"]', 1)
-    .text(value)
+    .each(node => {
+      if (node.innerText != value) node.innerText = value
+    })
     .on('input.md', input)
     .on('paste.md', paste)
     .on('keyup.md', keyup)
